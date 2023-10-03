@@ -67,9 +67,7 @@ Crear un directorio en HDFS llamado "/data".
 
 Copiar los archivos csv provistos a HDFS:
 ```
-  hdfs dfs -put /home/Datasets/* /data
-  
-  -put 
+  hdfs dfs -put /home/Datasets/* /data -put 
 ```
 
 Este proceso de creación de la carpeta data y copiado de los arhivos, debe poder ejecutarse desde un shell script.
