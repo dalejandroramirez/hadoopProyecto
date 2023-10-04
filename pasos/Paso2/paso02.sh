@@ -4,7 +4,9 @@
 
 # docker cp /home/pc/Documentos/henry/hadoopProyecto/pasos/Paso2/Paso02.hql hive-server:/Paso02.hql
 
-# Ejecutar el script .hql con Hive
+sudo docker exec -it hive-server bash
+
+# Ejecutar el script .hql con Hive 
 hive -f /home/Paso02.hql
 
 
