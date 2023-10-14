@@ -4,7 +4,7 @@ sudo docker-compose -f docker-compose-v1.yml up -d
 # Abrir el nodo maestro y crear la carpeta Datasets  
 sudo docker exec -it namenode bash
   
-cd home
+cd /home
 
 mkdir Datasets
 
