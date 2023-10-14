@@ -6,7 +6,7 @@ sudo docker exec -it namenode bash
   
 cd /home
 
-mkdir Datasets
+sudo mkdir Datasets
 
 exit
 
