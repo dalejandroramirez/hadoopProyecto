@@ -1,12 +1,14 @@
+# En el entorno v2
+
 # ejecutar en hiveserver
+sudo docker exec -it hive-server bash
 
-# use integrador2;
-# select idsucursal, sum(precio * cantidad) from venta group by idsucursal;
+# Ejecutar el script .hql con Hive 
+hive -f /home/Paso04.hql
 
-# CREATE INDEX index_venta_sucursal ON TABLE venta(IdSucursal) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD;
+# Al crear el indice paso  de 2,36 seg a 1,7seg (muy poco pero mejoro)
 
+# select IdSucursal, sum(Monto) From gasto
+# group by IdSucursal;
 
-# CREATE INDEX index_compra_producto ON TABLE compra(IdProducto) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' WITH DEFERRED REBUILD;
-
-# Al crear el indice se mejoro de 2,36 seg a 1,7seg
 

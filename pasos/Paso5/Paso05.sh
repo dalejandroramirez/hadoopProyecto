@@ -46,7 +46,8 @@ sudo docker-compose -f docker-compose-v3.yml up -d
 		get 'album','label1';
 	
 
-	## Mongo
+############################################################
+## Mongo
 
 	sudo docker cp Datasets/iris.csv mongodb:/data/iris.csv
 	sudo docker cp Datasets/iris.json mongodb:/data/iris.json
@@ -73,6 +74,22 @@ mongoexport --db proyectoHadoop --collection iris_csv --fields "sepal_length,sep
 
 mongoexport --db proyectoHadoop --collection iris_json --fields sepal_length,sepal_width,petal_length,petal_width,species --type=json --out home/data/iris_export.json
 
-#falta desde la 6---
+
+# descargar desde  https://search.maven.org/search?q=g:org.mongodb.mongo-hadoop
+
+## copiamos los archivos al hive server
+
+sudo docker cp pasos/Paso5/mongo/mongo-hadoop-hive-2.0.2.jar hive-server:/opt/hive/lib/mongo-hadoop-hive-2.0.2.jar
+
+sudo docker cp pasos/Paso5/mongo/mongo-hadoop-core-2.0.2.jar hive-server:/opt/hive/lib/mongo-hadoop-core-2.0.2.jar
+
+sudo docker cp pasos/Paso5/mongo/mongo-hadoop-spark-2.0.2.jar hive-server:/opt/hive/lib/mongo-hadoop-spark-2.0.2.jar
+
+sudo docker cp pasos/Paso5/mongo/mongo-java-driver-3.12.11.jar hive-server:/opt/hive/lib/mongo-java-driver-3.12.11.jar
+
+# copia de escala
+sudo docker cp pasos/Paso5/mongo/mongo-scala-driver-0.8.15.jar hive-server:/opt/hive/lib/mongo-java-driver-3.12.11.jar
+
+
 
 
