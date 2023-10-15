@@ -8,5 +8,6 @@
 
 - Luego de ejecutar los comandos de Paso00_scala.scala en el cual se crea un esquema con los vuelos 
 
-![Alt text](scalaflight.png)
+![Alt text](./../../images/scalaflight.png)
+
 

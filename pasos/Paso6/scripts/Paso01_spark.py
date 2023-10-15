@@ -7,9 +7,9 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.\
         builder.\
-        appName("prueba-pyspark").\
+        appName("hadoopProyect").\
         master("spark://spark-master:7077").\
-        config("spark.executor.memory", "512m").\
+        config("spark.executor.memory", "1g").\
         getOrCreate()
 
 flightSchema = StructType([
@@ -22,13 +22,13 @@ flightSchema = StructType([
   StructField("ArrDelay", IntegerType(), False),
 ])
 
-flights = spark.read.csv('hdfs://namenode:9000/flights/raw-flight-data.csv', schema=flightSchema, header=True)
+flights = spark.read.csv('hdfs://namenode:9000/flight/raw-flight-data.csv', schema=flightSchema, header=True)
 
 flights = flights.dropDuplicates().fillna(value=0, subset=["ArrDelay", "DepDelay"])
 
-# airports = spark.read.csv('hdfs://namenode:9000/data/flights/airports.csv', header=True, inferSchema=True)
+airports = spark.read.csv('hdfs://namenode:9000/flight/airports.csv', header=True, inferSchema=True)
 
-# flightsByOrigin = flights.join(airports, flights.OriginAirportID == airports.airport_id).groupBy("city").count()
+flightsByOrigin = flights.join(airports, flights.OriginAirportID == airports.airport_id).groupBy("city").count()
 
-# flightsByOrigin.repartition(1).write.csv(path="hdfs://namenode:9000/data/flightsByOrigin-procesado-spark", sep=",", header=True, mode="overwrite")
+flightsByOrigin.repartition(1).write.csv(path="hdfs://namenode:9000/flight/flightsByOrigin-procesado-spark", sep=",", header=True, mode="overwrite")
 
