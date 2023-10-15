@@ -92,4 +92,6 @@ sudo docker cp pasos/Paso5/mongo/mongo-scala-driver-0.8.15.jar hive-server:/opt/
 
 
 
+################################################################
+
 

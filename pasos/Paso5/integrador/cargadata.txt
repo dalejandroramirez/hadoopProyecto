@@ -1,0 +1,67 @@
+DROP INDEX ON :Producto(IdProducto);
+DROP INDEX ON :Cliente(ID);
+DROP INDEX ON :Venta(IdVenta);
+DROP INDEX ON :TipoProducto(IdTipoProducto);
+MATCH (p:Producto) DETACH DELETE p;
+MATCH (c:Cliente) DETACH DELETE c;
+MATCH (v:Venta) DETACH DELETE v;
+MATCH (t:IdTipoProducto) DETACH DELETE t;
+
+## carga de producto
+
+LOAD CSV WITH HEADERS FROM "file:///producto.csv" AS row
+CREATE (n:Producto)
+SET n = row,
+n.IdProducto = toInteger(row.IdProducto),
+n.Producto = toString(row.Producto), 
+n.IdTipoProducto = toInteger(row.IdTipoProducto);
+
+
+#carga de cliente
+LOAD CSV WITH HEADERS FROM "file:///cliente.csv" AS row
+CREATE (n:Cliente)
+SET n = row,
+n.IdCliente = toInteger(row.IdCliente),
+n.Nombre_y_Apellido = toString(row.Nombre_y_Apellido),
+n.Domicilio = toString(row.Domicilio);
+
+# carga de venta
+LOAD CSV WITH HEADERS FROM "file:///venta.csv" AS row
+CREATE (n:Venta)
+SET n = row,
+n.IdVenta = toInteger(row.IdVenta),
+n.IdCliente = toInteger(row.IdCliente),
+n.IdProducto = toInteger(row.IdProducto),
+n.Precio = toFloat(row.Precio),
+n.Cantidad = toInteger(row.Cantidad);
+
+LOAD CSV WITH HEADERS FROM "file:///tipo_gasto.csv" AS row
+CREATE (n:TipoGasto)
+SET n = row,
+n.IdTipoGasto = toInteger(row.IdTipoGasto),
+n.TipoGasto = toString(row.TipoGasto);
+
+
+MATCH(pro:Producto) RETURN pro;
+MATCH(cli:Cliente) RETURN cli;
+MATCH(tp:TipoProducto) RETURN tp;
+MATCH(tg:TipoGasto) RETURN tg;
+MATCH(vta:Venta) RETURN vta;
+
+CREATE INDEX FOR (n:Producto) ON (n.IdProducto);
+CREATE INDEX FOR (n:Cliente) ON (n.IdCliente);
+CREATE INDEX FOR (n:Venta) ON (n.IdVenta);
+CREATE INDEX FOR (n:TipoGasto) ON (n.IdTipoGasto);
+
+
+MATCH (t:TipoProducto),(p:Producto)
+WHERE t.IdTipoProducto = p.IdTipoProducto
+CREATE (t)-[:AGRUPA_A]->(p);
+
+MATCH (p:Producto),(v:Venta)
+WHERE p.IdProducto = v.IdProducto
+CREATE (p)-[:VENDIDO_EN]->(v);
+
+MATCH (c:Cliente),(v:Venta)
+WHERE c.IdCliente = v.IdCliente
+CREATE (c)-[:CLIENTE_EN]->(v);
