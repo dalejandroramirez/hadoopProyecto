@@ -83,7 +83,6 @@ YIELD index, sourceNode, targetNode, totalCost, nodeIds, costs, path
 		ORDER BY index
 
 
-
 ### comandos que encontre
 
 ### Llamar el nodo 11

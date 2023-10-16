@@ -26,6 +26,8 @@ CALL gds.graph.project(
       properties: 'cost',
       orientation: 'UNDIRECTED'}})
 
+#      
+
 MATCH (n:Place {id: 'D'})
 CALL gds.beta.spanningTree.stats.estimate('graph', {sourceNode: id(n),relationshipWeightProperty:'cost'})
 YIELD nodeCount, relationshipCount, bytesMin, bytesMax, requiredMemory

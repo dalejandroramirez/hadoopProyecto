@@ -19,7 +19,7 @@ var flights2 = flights.dropDuplicates().na.fill(0, Array("ArrDelay", "DepDelay")
 
 case class airportsSchema(airport_id:String, city:String, state:String, name:String)
 
-var airports = spark.read.format("csv").option("sep", ",").option("header", "true").load("hdfs://namenode:9000/flight/airports.csv").as[airportsSchema]
+var airports = spark.read.format("csv").option("sep", ",").option("header", "true").load("hdfs://namenode:9000/home/flight/airports.csv").as[airportsSchema]
 
 val flightsByOrigin = flights.join(airports, $"OriginAirportID" === $"airport_id").groupBy("city").count()
 

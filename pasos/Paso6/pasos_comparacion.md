@@ -16,6 +16,3 @@
 
 /spark/bin/spark-shell --master spark://spark-master:7077 -i pruebaScala.scala
 
-
-## Nota: 
-- Aun no logro ver la comparación...

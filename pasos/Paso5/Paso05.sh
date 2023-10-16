@@ -22,7 +22,7 @@ sudo docker-compose -f docker-compose-v3.yml up -d
 
 	sudo docker exec -it namenode bash
 
-	sudo docker cp Datasets/personal.csv namenode:/hbase/data/personal.csv
+	sudo docker cp Datasets/personal.csv namenode:home/hbase/data/personal.csv
 
 	hdfs dfs -put ./personal.csv /hbase/data/personal.csv
 
@@ -89,6 +89,16 @@ sudo docker cp pasos/Paso5/mongo/mongo-java-driver-3.12.11.jar hive-server:/opt/
 
 # copia de escala
 sudo docker cp pasos/Paso5/mongo/mongo-scala-driver-0.8.15.jar hive-server:/opt/hive/lib/mongo-java-driver-3.12.11.jar
+
+#
+sudo docker cp iris.hql hive-server:/opt/iris.hql
+sudo docker exec -it hive-server bash
+
+#
+hiveserver2
+chmod 777 iris.hql
+hive -f iris.hql
+
 
 
 

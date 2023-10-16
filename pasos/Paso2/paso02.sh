@@ -6,7 +6,7 @@ sudo docker-compose -f docker-compose-v2.yml up -d
 
 # Debo copiar mi archivo hql dentro de serverhive
 
-# docker cp /home/pc/Documentos/henry/hadoopProyecto/pasos/Paso2/Paso02.hql hive-server:/Paso02.hql
+docker cp /home/pc/Documentos/henry/hadoopProyecto/pasos/Paso2/Paso02.hql hive-server:/Paso02.hql
 
 sudo docker exec -it hive-server bash
 

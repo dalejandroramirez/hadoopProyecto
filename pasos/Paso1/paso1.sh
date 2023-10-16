@@ -14,7 +14,7 @@ exit
 
 # Copiar los archivos que se encuentran en datasets a el nodo maestro del contenedor
 
-sudo docker cp ./Datasets/canaldeventa/ namenode:/home/Datasets2/canaldeventa/
+sudo docker cp ./Datasets/canaldeventa/ namenode:/home/Datasets/canaldeventa/
 
 sudo docker cp ./Datasets/calendario/ namenode:/home/Datasets/calendario/
 
@@ -39,7 +39,7 @@ sudo docker cp ./Datasets/data_nvo/ namenode:/home/Datasets/data_nvo/
 
 sudo docker exec -it namenode bash
 
-hdfs dfs -mkdir -p /data2
+hdfs dfs -mkdir -p /data
 
 # # Copiar los archivos csv provistos a HDFS:
 
