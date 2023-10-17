@@ -22,13 +22,13 @@ flightSchema = StructType([
   StructField("ArrDelay", IntegerType(), False),
 ])
 
-flights = spark.read.csv('hdfs://namenode:9000/flight/raw-flight-data.csv', schema=flightSchema, header=True)
+flights = spark.read.csv('hdfs://namenode:9000/data/flight/raw-flight-data.csv', schema=flightSchema, header=True)
 
 flights = flights.dropDuplicates().fillna(value=0, subset=["ArrDelay", "DepDelay"])
 
-airports = spark.read.csv('hdfs://namenode:9000/flight/airports.csv', header=True, inferSchema=True)
+airports = spark.read.csv('hdfs://namenode:9000/data/flight/airports.csv', header=True, inferSchema=True)
 
 flightsByOrigin = flights.join(airports, flights.OriginAirportID == airports.airport_id).groupBy("city").count()
 
-flightsByOrigin.repartition(1).write.csv(path="hdfs://namenode:9000/flight/flightsByOrigin-procesado-spark", sep=",", header=True, mode="overwrite")
+flightsByOrigin.repartition(1).write.csv(path="hdfs://namenode:9000/data/flight/flightsByOrigin-procesado-spark", sep=",", header=True, mode="overwrite")
 

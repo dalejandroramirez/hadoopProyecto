@@ -20,7 +20,11 @@ sudo docker-compose -f docker-compose-v3.yml up -d
 	#2-En el namenode del cluster:
 	# Se abre el namenode y se guarda el archivo personal.csv en el nodo, luego se guarda en el hdfs 
 
+
+
 	sudo docker exec -it namenode bash
+	mkdir hbase
+	exit
 
 	sudo docker cp Datasets/personal.csv namenode:home/hbase/data/personal.csv
 
@@ -100,8 +104,6 @@ chmod 777 iris.hql
 hive -f iris.hql
 
 
-
-
 ################################################################
-
+## neo4j
 

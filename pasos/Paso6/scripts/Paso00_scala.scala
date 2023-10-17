@@ -21,7 +21,6 @@ val flights = spark.read.format("csv").option("sep", ",").option("header", "true
 ## eliminar nulos
 var flights2 = flights.dropDuplicates().na.fill(0, Array("ArrDelay", "DepDelay"))
 
-
 ## carga de airports
 
 case class airportsSchema(airport_id:String, city:String, state:String, name:String)

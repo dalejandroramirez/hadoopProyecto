@@ -6,7 +6,6 @@ A continuación mostrare los problemas que tuve.
 
 - En el paso 3 se modifico el archivo, ya que habian errors de sintaxis
 
-- Escala funciono perfecto y el archivo py tambien funciono perfecto dentro del nodo pero no logre comparar los tiempo de ambos.
 
 - en la parte de neo4j el ejemplo de logistica estaba desactualizado, y no corre con las nuevas versiones. entrando a neo4j se cambio por la sintaxis utilizada y funciono correctamente
 

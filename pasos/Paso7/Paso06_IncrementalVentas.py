@@ -7,7 +7,6 @@ from pyspark.sql import SparkSession
 spark = SparkSession.\
         builder.\
         appName("prueba-pyspark").\
-        master("spark://spark-master:7077").\
         config("spark.executor.memory", "512m").\
         getOrCreate()
         

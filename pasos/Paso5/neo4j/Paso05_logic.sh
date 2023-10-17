@@ -75,4 +75,3 @@ RETURN startNode(rel).id AS Source, endNode(rel).id AS Destination, rel.writeCos
 
 MATCH (n) DETACH DELETE n
 
-
